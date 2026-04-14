@@ -15,7 +15,8 @@ const Schemes = () => {
   const [loadingSchemes, setLoadingSchemes] = useState(true);
 
   React.useEffect(() => {
-    fetch('/api/schemes/all')
+    const API_BASE = (import.meta.env.VITE_API_URL || '') + '/api';
+    fetch(`${API_BASE}/schemes/all`)
       .then(res => res.json())
       .then(data => {
         setAllSchemes(data);
@@ -38,7 +39,8 @@ const Schemes = () => {
     setIsSearching(true);
     setError(null);
     try {
-      const res = await fetch(`/api/schemes?query=${encodeURIComponent(searchQuery)}&state=Haryana`);
+      const API_BASE = (import.meta.env.VITE_API_URL || '') + '/api';
+      const res = await fetch(`${API_BASE}/schemes?query=${encodeURIComponent(searchQuery)}&state=Haryana`);
       if (!res.ok) throw new Error('API error');
       const data = await res.json();
       setRagResult(data);

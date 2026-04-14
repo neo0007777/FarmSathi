@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Send, Mic, Settings2, Database } from 'lucide-react';
 
-const API_BASE = '/api';
+const API_BASE = (import.meta.env.VITE_API_URL || '') + '/api';
 
 const ChatInterface = () => {
   const { t, i18n } = useTranslation();

@@ -15,7 +15,8 @@ const Mandi = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/mandi?state=Haryana&limit=100')
+    const API_BASE = (import.meta.env.VITE_API_URL || '') + '/api';
+    fetch(`${API_BASE}/mandi?state=Haryana&limit=100`)
       .then(res => res.json())
       .then(data => {
         const mapped = data.prices.map((p, i) => ({

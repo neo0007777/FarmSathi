@@ -24,7 +24,8 @@ const Advisor = () => {
     setIsAnalyzing(true);
     setError(null);
     try {
-      const res = await fetch('/api/advisor', {
+      const API_BASE = (import.meta.env.VITE_API_URL || '') + '/api';
+      const res = await fetch(`${API_BASE}/advisor`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

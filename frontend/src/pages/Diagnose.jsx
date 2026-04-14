@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Upload, X, Search, Database, ArrowRight, AlertTriangle } from 'lucide-react';
 
-const API_BASE = '/api';
+const API_BASE = (import.meta.env.VITE_API_URL || '') + '/api';
 
 const Diagnose = () => {
   const { t } = useTranslation();
