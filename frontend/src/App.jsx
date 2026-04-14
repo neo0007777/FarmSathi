@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { 
   Home as HomeIcon, 
   MessageSquare, 
@@ -8,7 +9,6 @@ import {
   MapPin, 
   Zap, 
   Settings,
-  Bell,
   CloudRain,
   Wind
 } from 'lucide-react';
@@ -21,6 +21,7 @@ import Mandi from './pages/Mandi';
 import Advisor from './pages/Advisor';
 
 const Sidebar = () => {
+  const { t } = useTranslation();
   const [weather, setWeather] = useState(null);
   const [loadingWeather, setLoadingWeather] = useState(true);
 
@@ -45,12 +46,12 @@ const Sidebar = () => {
   }, []);
 
   const menuItems = [
-    { icon: HomeIcon, label: 'Overview', path: '/' },
-    { icon: MessageSquare, label: 'Advisory Chat', path: '/chat' },
-    { icon: Search, label: 'Pathology', path: '/diagnose' },
-    { icon: FileText, label: 'Schemes', path: '/schemes' },
-    { icon: MapPin, label: 'Markets', path: '/mandi' },
-    { icon: Zap, label: 'Planning', path: '/advisor' },
+    { icon: HomeIcon, label: t('nav.overview'), path: '/' },
+    { icon: MessageSquare, label: t('nav.advisory_chat'), path: '/chat' },
+    { icon: Search, label: t('nav.pathology'), path: '/diagnose' },
+    { icon: FileText, label: t('nav.schemes'), path: '/schemes' },
+    { icon: MapPin, label: t('nav.markets'), path: '/mandi' },
+    { icon: Zap, label: t('nav.planning'), path: '/advisor' },
   ];
 
   return (
@@ -62,7 +63,7 @@ const Sidebar = () => {
         </div>
         <div className="flex flex-col">
           <h1 className="text-xl font-bold text-gray-900 leading-tight">FarmSathi</h1>
-          <span className="text-xs text-indigo-600 font-semibold tracking-wide">INTELLIGENCE</span>
+          <span className="text-xs text-indigo-600 font-semibold tracking-wide uppercase">Intelligence</span>
         </div>
       </div>
 
@@ -90,7 +91,7 @@ const Sidebar = () => {
 
       {/* Deep Weather Block */}
       <div className="mt-6 pt-6 border-t border-gray-200 px-6">
-        <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Live Conditions</h4>
+        <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">{t('nav.live_conditions')}</h4>
         <div className="flex flex-col gap-3 text-gray-900 bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
           {loadingWeather ? (
              <div className="animate-pulse flex flex-col gap-2">
@@ -102,11 +103,11 @@ const Sidebar = () => {
             <>
               <div className="flex items-baseline gap-2">
                 <span className="text-3xl font-bold">{weather.temp}°</span>
-                <span className="text-sm font-semibold text-gray-600">Sonipat</span>
+                <span className="text-sm font-semibold text-gray-600">{t('nav.sonipat')}</span>
               </div>
               <div className="flex flex-col gap-1.5 text-[13px] font-medium text-gray-700 border-l-2 border-indigo-400 pl-3">
                 <div className="flex items-center gap-2">
-                  <CloudRain size={14} className="text-indigo-600" /> {weather.rain}mm Expected (3d)
+                  <CloudRain size={14} className="text-indigo-600" /> {t('nav.expected_rain', { rain: weather.rain })}
                 </div>
                 <div className="flex items-center gap-2">
                   <Wind size={14} className="text-indigo-600" /> {weather.wind} km/h
@@ -117,7 +118,7 @@ const Sidebar = () => {
               </p>
             </>
           ) : (
-            <span className="text-sm text-red-500">Failed to load weather</span>
+            <span className="text-sm text-red-500">{t('nav.failed_weather')}</span>
           )}
         </div>
       </div>
@@ -126,17 +127,23 @@ const Sidebar = () => {
 };
 
 const Topbar = () => {
+  const { t, i18n } = useTranslation();
   const location = useLocation();
+
   const getPageTitle = () => {
     switch (location.pathname) {
-      case '/': return 'Global Overview';
-      case '/chat': return 'AI Diagnostic Chat';
-      case '/diagnose': return 'Pathology Scanner';
-      case '/schemes': return 'State & Central Schemes';
-      case '/mandi': return 'Real-time Markets';
-      case '/advisor': return 'Strategic Planning';
-      default: return 'Dashboard';
+      case '/': return t('topbar.titles.overview');
+      case '/chat': return t('topbar.titles.chat');
+      case '/diagnose': return t('topbar.titles.diagnose');
+      case '/schemes': return t('topbar.titles.schemes');
+      case '/mandi': return t('topbar.titles.mandi');
+      case '/advisor': return t('topbar.titles.advisor');
+      default: return t('topbar.titles.dashboard');
     }
+  };
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
   };
 
   return (
@@ -146,22 +153,27 @@ const Topbar = () => {
         <span className="h-5 w-px bg-gray-300"></span>
         <div className="flex items-center gap-2 text-sm font-semibold text-gray-600 bg-gray-50 px-3 py-1 rounded-full border border-gray-200">
           <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-sm"></span>
-          Kharif Season
+          {t('topbar.season')}
         </div>
       </div>
 
       <div className="flex items-center gap-5">
-        <div className="flex items-center gap-2 group cursor-pointer bg-white hover:bg-gray-50 p-2 rounded-lg transition-colors border border-gray-200">
-          <Bell size={18} className="text-gray-600 group-hover:text-gray-900" />
-          <span className="text-sm font-bold text-gray-600 group-hover:text-gray-900">1</span>
-        </div>
-
-        <div className="flex items-center bg-gray-100 rounded-lg p-1 border border-gray-200">
-          <button className="px-3 py-1.5 text-xs font-bold rounded-md bg-white text-gray-900 shadow-sm">EN</button>
-          <button className="px-3 py-1.5 text-xs font-bold rounded-md text-gray-600 hover:text-gray-900 transition-colors">HI</button>
+        <div className="flex items-center bg-gray-100 rounded-lg p-1 border border-gray-200 shadow-sm">
+          <button 
+            onClick={() => changeLanguage('en')}
+            className={`px-3 py-1.5 text-xs font-bold rounded-md transition-all ${i18n.language.startsWith('en') ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-900'}`}
+          >
+            EN
+          </button>
+          <button 
+            onClick={() => changeLanguage('hi')}
+            className={`px-3 py-1.5 text-xs font-bold rounded-md transition-all ${i18n.language.startsWith('hi') ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-900'}`}
+          >
+            HI
+          </button>
         </div>
         
-        <button className="text-gray-600 hover:text-gray-900 transition-colors bg-white hover:bg-gray-50 p-2 rounded-lg border border-gray-200">
+        <button className="text-gray-600 hover:text-gray-900 transition-colors bg-white hover:bg-gray-50 p-2 rounded-lg border border-gray-200 shadow-sm">
           <Settings size={18} />
         </button>
       </div>

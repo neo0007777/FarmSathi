@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
-from app.routes import chat, diagnose, schemes, weather, mandi, advisor
+from app.routes import chat, diagnose, schemes, weather, mandi, advisor, analyze
 
 load_dotenv(override=True)
 
@@ -30,6 +30,7 @@ app.include_router(schemes.router,  prefix="/api", tags=["Schemes"])
 app.include_router(weather.router,  prefix="/api", tags=["Weather"])
 app.include_router(mandi.router,    prefix="/api", tags=["Mandi"])
 app.include_router(advisor.router,  prefix="/api", tags=["Advisor"])
+app.include_router(analyze.router,  prefix="/api", tags=["Analyze"])
 
 
 @app.get("/")

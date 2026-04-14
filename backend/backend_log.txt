@@ -1,0 +1,99 @@
+INFO:     Will watch for changes in these directories: ['/Users/shivasharma/Desktop/ai proj/farm/backend']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [60956] using WatchFiles
+INFO:     Started server process [60959]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:53943 - "GET /api/ping HTTP/1.1" 200 OK
+[MandiService] Fetched 5 records for state=Haryana
+INFO:     127.0.0.1:53945 - "GET /api/mandi?state=Haryana&limit=5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53971 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53982 - "GET /api/schemes/all HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53985 - "GET /api/schemes/all HTTP/1.1" 200 OK
+[Embedder] Loading model: paraphrase-multilingual-MiniLM-L12-v2 ...
+[Embedder] Model loaded.
+[Pinecone] Using existing index: farmsathi-docs-384
+INFO:     127.0.0.1:53987 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54012 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54021 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54016 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 200 OK
+[MandiService] Fetched 100 records for state=Haryana
+INFO:     127.0.0.1:54026 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+[MandiService] Fetched 100 records for state=Haryana
+INFO:     127.0.0.1:54029 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54033 - "POST /api/chat HTTP/1.1" 200 OK
+[MandiService] Fetched 100 records for state=Haryana
+INFO:     127.0.0.1:54041 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+[MandiService] Fetched 100 records for state=Haryana
+INFO:     127.0.0.1:54044 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+[MandiService] Fetched 100 records for state=Haryana
+INFO:     127.0.0.1:54049 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+[MandiService] Fetched 100 records for state=Haryana
+INFO:     127.0.0.1:54052 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54147 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:54167 - "GET /api/schemes/all HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54170 - "GET /api/schemes/all HTTP/1.1" 200 OK
+[MandiService] Fetched 100 records for state=Haryana
+INFO:     127.0.0.1:54174 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+[MandiService] Fetched 100 records for state=Haryana
+INFO:     127.0.0.1:54177 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54161 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+[MandiService] Fetched 100 records for state=Haryana
+INFO:     127.0.0.1:54185 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+[MandiService] API error: ReadTimeout:  — using fallback data
+INFO:     127.0.0.1:54188 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54470 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:54476 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:54486 - "GET /api/schemes/all HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54488 - "GET /api/schemes/all HTTP/1.1" 200 OK
+[MandiService] Fetched 100 records for state=Haryana
+INFO:     127.0.0.1:54492 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+[MandiService] Fetched 100 records for state=Haryana
+INFO:     127.0.0.1:54496 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54510 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54540 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:54544 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:54560 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54570 - "GET /api/schemes/all HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54572 - "GET /api/schemes/all HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54591 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:54595 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:54606 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:54612 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54644 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:54650 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:54692 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:54702 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:54743 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:54749 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:54780 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54800 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54813 - "GET /api/schemes/all HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54815 - "GET /api/schemes/all HTTP/1.1" 200 OK
+[MandiService] Fetched 100 records for state=Haryana
+INFO:     127.0.0.1:54818 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54795 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+[MandiService] Fetched 100 records for state=Haryana
+INFO:     127.0.0.1:54822 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+[MandiService] Fetched 100 records for state=Haryana
+INFO:     127.0.0.1:54830 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54826 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+[MandiService] API error: ReadTimeout:  — using fallback data
+INFO:     127.0.0.1:54846 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+[MandiService] Fetched 100 records for state=Haryana
+INFO:     127.0.0.1:54854 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54845 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:54858 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:54867 - "GET /api/schemes/all HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54869 - "GET /api/schemes/all HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54880 - "GET /api/schemes/all HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54883 - "GET /api/schemes/all HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54887 - "GET /api/schemes/all HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54889 - "GET /api/schemes/all HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54879 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:54892 - "GET /api/weather?lat=28.9948&lon=77.0151 HTTP/1.1" 503 Service Unavailable
+[MandiService] API error: ReadTimeout:  — using fallback data
+INFO:     127.0.0.1:54897 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+[MandiService] Fetched 100 records for state=Haryana
+INFO:     127.0.0.1:54904 - "GET /api/mandi?state=Haryana&limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54912 - "GET / HTTP/1.1" 200 OK

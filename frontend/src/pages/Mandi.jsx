@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -8,6 +9,7 @@ import {
 } from 'lucide-react';
 
 const Mandi = () => {
+  const { t, i18n } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [mandiData, setMandiData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,12 +22,12 @@ const Mandi = () => {
           id: i,
           crop: p.crop,
           mandi: `${p.mandi} / ${p.state}`,
-          price: p.modal_price.toLocaleString('en-IN') + '.00',
+          price: (p.modal_price || 0).toLocaleString(i18n.language === 'hi' ? 'hi-IN' : 'en-IN') + '.00',
           change: '--',
           isUp: true,
           arrival: 'N/A',
           date: p.date || 'Today',
-          trend: [p.min_price, p.modal_price, p.max_price]
+          trend: [p.min_price || 0, p.modal_price || 0, p.max_price || 0]
         }));
         setMandiData(mapped);
         setLoading(false);
@@ -34,7 +36,7 @@ const Mandi = () => {
         console.error('Mandi fetch error', err);
         setLoading(false);
       });
-  }, []);
+  }, [i18n.language]);
 
   const filteredData = mandiData.filter(d => 
     d.crop.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -42,7 +44,6 @@ const Mandi = () => {
   );
 
   const Sparkline = ({ data, color }) => {
-    // If only one unique value, add a tiny bit of difference so max!=min (avoids division by zero)
     const uniqueVals = [...new Set(data)];
     const min = Math.min(...data) - (uniqueVals.length === 1 ? 1 : 0);
     const max = Math.max(...data) + (uniqueVals.length === 1 ? 1 : 0);
@@ -77,12 +78,16 @@ const Mandi = () => {
         
         <div className="flex flex-col max-w-2xl relative z-10">
           <div className="flex items-center gap-3 mb-3">
-            <span className="bg-indigo-100 text-indigo-700 font-bold border border-indigo-200 text-[10px] px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">Global Markets</span>
+            <span className="bg-indigo-100 text-indigo-700 font-bold border border-indigo-200 text-[10px] px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">
+              {t('mandi.header.subtitle')}
+            </span>
             <span className="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Live Feed</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+              {t('mandi.header.live')}
+            </span>
           </div>
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-gray-900">
-            Real-time Commodities
+            {t('mandi.header.title')}
           </h1>
         </div>
         
@@ -91,14 +96,14 @@ const Mandi = () => {
             <Search size={16} className="text-gray-400 mr-3" />
             <input 
               type="text" 
-              placeholder="Query ticker or crop..." 
+              placeholder={t('mandi.header.search_placeholder')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="bg-transparent border-none text-[14px] font-bold text-gray-900 placeholder-gray-500 focus:outline-none w-full"
             />
           </div>
           <button className="flex items-center gap-2 px-5 py-3 bg-white border border-gray-300 rounded-xl text-xs font-bold uppercase tracking-widest text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors shadow-sm">
-            <Filter size={16} /> Refine
+            <Filter size={16} /> {t('mandi.header.refine')}
           </button>
         </div>
       </div>
@@ -113,26 +118,30 @@ const Mandi = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-8 flex flex-col justify-between group hover:shadow-md transition-all">
               <div className="flex justify-between items-start mb-6">
-                <div className="text-[11px] font-bold uppercase tracking-widest text-gray-600 bg-gray-50 px-3 py-1 rounded-md border border-gray-200">Total Markets</div>
+                <div className="text-[11px] font-bold uppercase tracking-widest text-gray-600 bg-gray-50 px-3 py-1 rounded-md border border-gray-200">
+                  {t('mandi.stats.total_markets')}
+                </div>
                 <TrendingUp size={20} className="text-indigo-500" strokeWidth={2.5} />
               </div>
               <div>
                 <div className="text-3xl font-black tracking-tight text-gray-900 mb-2">{mandiData.length}</div>
                 <div className="flex items-center gap-2 text-[13px] font-bold text-gray-600 bg-gray-50 px-3 py-1 border border-gray-200 rounded-full w-fit">
-                  Verified Data
+                  {t('mandi.stats.verified_data')}
                 </div>
               </div>
             </div>
 
             <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-8 flex flex-col justify-between group hover:shadow-md transition-all">
               <div className="flex justify-between items-start mb-6">
-                <div className="text-[11px] font-bold uppercase tracking-widest text-gray-600 bg-gray-50 px-3 py-1 rounded-md border border-gray-200">Active Crop</div>
+                <div className="text-[11px] font-bold uppercase tracking-widest text-gray-600 bg-gray-50 px-3 py-1 rounded-md border border-gray-200">
+                  {t('mandi.stats.active_crop')}
+                </div>
                 <TrendingUp size={20} className="text-emerald-500" strokeWidth={2.5} />
               </div>
               <div>
                 <div className="text-3xl font-black tracking-tight text-gray-900 mb-2">{mandiData.length > 0 ? mandiData[0].crop : '--'}</div>
                 <div className="flex items-center gap-2 text-[13px] font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full w-fit border border-emerald-100">
-                  Highest Volume
+                  {t('mandi.stats.highest_volume')}
                 </div>
               </div>
             </div>
@@ -140,15 +149,17 @@ const Mandi = () => {
             <div className="bg-gray-900 text-white rounded-xl shadow-lg p-8 flex flex-col justify-between border border-gray-800 relative overflow-hidden">
               <div className="absolute -right-6 -bottom-6 w-32 h-32 bg-indigo-500 blur-[80px] opacity-40 pointer-events-none rounded-full"></div>
               
-              <div className="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-6 bg-gray-800 border border-gray-700 px-3 py-1 rounded-md w-fit">Index Overview</div>
+              <div className="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-6 bg-gray-800 border border-gray-700 px-3 py-1 rounded-md w-fit">
+                {t('mandi.stats.index_overview')}
+              </div>
               <div className="flex flex-col gap-5 relative z-10">
                 <div className="flex justify-between items-center border-b border-gray-800 pb-3">
-                  <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Active Entities</span>
+                  <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">{t('mandi.stats.active_entities')}</span>
                   <span className="text-2xl font-black text-white bg-gray-800 px-3 py-1 rounded">124</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Agmarknet</span>
-                  <span className="text-base font-bold text-emerald-400">Connected</span>
+                  <span className="text-base font-bold text-emerald-400">{t('mandi.stats.connected')}</span>
                 </div>
               </div>
             </div>
@@ -159,12 +170,12 @@ const Mandi = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-gray-50 border-b border-gray-200">
-                    <th className="py-5 px-6 text-[11px] font-bold text-gray-600 uppercase tracking-widest">Asset / Commodity</th>
-                    <th className="py-5 px-6 text-[11px] font-bold text-gray-600 uppercase tracking-widest">Exchange</th>
-                    <th className="py-5 px-6 text-[11px] font-bold text-gray-600 uppercase tracking-widest text-right">Quote (INR/Qtl)</th>
-                    <th className="py-5 px-6 text-[11px] font-bold text-gray-600 uppercase tracking-widest text-center">Spread (Min-Max)</th>
-                    <th className="py-5 px-6 text-[11px] font-bold text-gray-600 uppercase tracking-widest">Price Gap</th>
+                  <tr className="bg-gray-50 border-b border-200">
+                    <th className="py-5 px-6 text-[11px] font-bold text-gray-600 uppercase tracking-widest">{t('mandi.table.commodity')}</th>
+                    <th className="py-5 px-6 text-[11px] font-bold text-gray-600 uppercase tracking-widest">{t('mandi.table.exchange')}</th>
+                    <th className="py-5 px-6 text-[11px] font-bold text-gray-600 uppercase tracking-widest text-right">{t('mandi.table.quote')}</th>
+                    <th className="py-5 px-6 text-[11px] font-bold text-gray-600 uppercase tracking-widest text-center">{t('mandi.table.spread')}</th>
+                    <th className="py-5 px-6 text-[11px] font-bold text-gray-600 uppercase tracking-widest">{t('mandi.table.price_gap')}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
@@ -199,7 +210,7 @@ const Mandi = () => {
                       </td>
                       <td className="py-6 px-6 text-left">
                         <span className={`inline-flex items-center justify-center gap-1 font-bold text-[13px] px-3 py-1.5 rounded-lg border bg-gray-50 text-gray-700 border-gray-200`}>
-                          {(row.trend[2] - row.trend[0])} INR spread
+                          {t('mandi.table.spread_text', { spread: (row.trend[2] - row.trend[0]) })}
                         </span>
                       </td>
                     </motion.tr>

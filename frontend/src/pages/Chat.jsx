@@ -1,29 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Send, Mic, Settings2, Database } from 'lucide-react';
 
 const API_BASE = '/api';
 
 const ChatInterface = () => {
+  const { t, i18n } = useTranslation();
   const [messages, setMessages] = useState([
     { 
       id: 1, 
-      text: "System initialized. FarmSathi diagnostic and advisory protocol ready. Please provide field parameters or query constraints.", 
+      text: t('chat.initial_msg'), 
       sender: 'ai',
       timestamp: new Date()
     }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [language, setLanguage] = useState('en');
   const scrollRef = useRef(null);
-  // Keep a rolling chat history for multi-turn context
   const historyRef = useRef([]);
 
   const suggestions = [
-    "Identify yellowing in basal wheat leaves",
-    "Calculate NPK ratio for alluvial soil",
-    "List Kharif drought-resistant cultivars"
+    t('chat.suggestions.yellowing'),
+    t('chat.suggestions.npk'),
+    t('chat.suggestions.cultivars')
   ];
 
   useEffect(() => {
@@ -47,7 +47,6 @@ const ChatInterface = () => {
     setInput('');
     setIsTyping(true);
 
-    // Build history for context (last 6 turns)
     const history = historyRef.current.slice(-6);
 
     try {
@@ -56,7 +55,7 @@ const ChatInterface = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: messageText,
-          language,
+          language: i18n.language,
           history,
         }),
       });
@@ -68,7 +67,6 @@ const ChatInterface = () => {
 
       const data = await res.json();
 
-      // Update rolling history
       historyRef.current = [
         ...historyRef.current,
         { role: 'user', content: messageText },
@@ -86,7 +84,7 @@ const ChatInterface = () => {
     } catch (err) {
       const errorMsg = {
         id: Date.now() + 1,
-        text: `⚠️ Error: ${err.message}. Make sure the backend server is running on port 8000.`,
+        text: t('chat.errors.server', { error: err.message }),
         sender: 'ai',
         timestamp: new Date(),
       };
@@ -97,7 +95,7 @@ const ChatInterface = () => {
   };
 
   return (
-    <div className="flex flex-col h-[85vh] bg-white border border-gray-200 shadow-sm rounded-xl overflow-hidden mt-4">
+    <div className="flex flex-col h-[85vh] bg-white border border-gray-200 shadow-sm rounded-xl overflow-hidden mt-4 font-inter">
       {/* Header */}
       <div className="flex items-center justify-between px-6 py-5 border-b border-gray-200 bg-white shadow-sm z-10 relative">
         <div className="flex items-center gap-4">
@@ -106,28 +104,17 @@ const ChatInterface = () => {
           </div>
           <div className="flex flex-col">
             <h2 className="text-base font-bold text-gray-900 mb-0.5 tracking-tight">
-              Diagnostic Terminal
+              {t('chat.header.title')}
             </h2>
             <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-600 uppercase tracking-widest">
               <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-sm"></span>
-              Online Status
+              {t('chat.header.status')}
             </div>
           </div>
         </div>
 
-        {/* Language toggle */}
         <div className="flex items-center gap-3">
-          <div className="flex items-center bg-gray-100 rounded-lg p-1 border border-gray-200">
-            <button
-              onClick={() => setLanguage('en')}
-              className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${language === 'en' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}
-            >EN</button>
-            <button
-              onClick={() => setLanguage('hi')}
-              className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${language === 'hi' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}
-            >हिं</button>
-          </div>
-          <button className="p-2 border border-gray-200 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors bg-white">
+          <button className="p-2 border border-gray-200 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors bg-white shadow-sm">
             <Settings2 size={18} />
           </button>
         </div>
@@ -144,7 +131,7 @@ const ChatInterface = () => {
               animate={{ opacity: 1, y: 0 }}
             >
               <div className="text-[11px] font-bold uppercase tracking-widest text-gray-500 mb-2 px-1">
-                {msg.sender === 'user' ? 'You' : 'AI Protocol'}
+                {msg.sender === 'user' ? t('chat.labels.you') : t('chat.labels.ai')}
               </div>
               
               <div className={`p-4 md:p-5 text-[15px] leading-relaxed font-medium min-w-[200px] shadow-sm
@@ -179,7 +166,7 @@ const ChatInterface = () => {
           {isTyping && (
             <motion.div className="flex flex-col w-full max-w-md self-start items-start" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               <div className="text-[11px] font-bold uppercase tracking-widest text-gray-500 mb-2 px-1">
-                AI Protocol
+                {t('chat.labels.ai')}
               </div>
               <div className="p-4 md:p-5 bg-white border border-gray-200 shadow-sm rounded-2xl rounded-tl-sm flex items-center min-w-[120px]">
                 <div className="h-4 flex items-center gap-1.5">
@@ -197,7 +184,7 @@ const ChatInterface = () => {
       <div className="bg-white border-t border-gray-200 p-4 md:p-6 shadow-sm z-10 relative">
         <div className="mb-4">
           <div className="flex gap-2 overflow-x-auto pb-2 custom-scrollbar">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-gray-600 py-1.5 shrink-0">Prompts</span>
+            <span className="text-[11px] font-bold uppercase tracking-widest text-gray-600 py-1.5 shrink-0">{t('chat.labels.prompts')}</span>
             {suggestions.map((s, i) => (
               <button 
                 key={i} 
@@ -219,7 +206,7 @@ const ChatInterface = () => {
             <input 
               type="text" 
               className="flex-1 bg-transparent py-3 text-[15px] font-semibold text-gray-900 placeholder-gray-500 focus:outline-none"
-              placeholder="Query protocol..." 
+              placeholder={t('chat.placeholders.query')} 
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSend()}
@@ -234,7 +221,7 @@ const ChatInterface = () => {
             onClick={() => handleSend()} 
             disabled={!input.trim() || isTyping}
           >
-            <Send size={18} className="mr-2" /> Send
+            <Send size={18} className="mr-2" /> {t('chat.actions.send')}
           </button>
         </div>
       </div>

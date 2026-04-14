@@ -1,0 +1,178 @@
+{
+  "nav": {
+    "overview": "Overview",
+    "advisory_chat": "Advisory Chat",
+    "pathology": "Pathology",
+    "schemes": "Schemes",
+    "markets": "Markets",
+    "planning": "Planning",
+    "live_conditions": "Live Conditions",
+    "sonipat": "Sonipat",
+    "expected_rain": "{{rain}}mm Expected (3d)",
+    "failed_weather": "Failed to load weather"
+  },
+  "topbar": {
+    "titles": {
+      "overview": "Global Overview",
+      "chat": "AI Diagnostic Chat",
+      "diagnose": "Pathology Scanner",
+      "schemes": "State & Central Schemes",
+      "mandi": "Real-time Markets",
+      "advisor": "Strategic Planning",
+      "dashboard": "Dashboard"
+    },
+    "season": "Kharif Season"
+  },
+  "home": {
+    "platform_version": "Platform v2",
+    "headline": "Agricultural intelligence, {{br}} designed for output.",
+    "subheadline": "Deploy deep-learning diagnostic models, consult with AI agronomists, and access state subsidies through a unified, high-contrast dashboard.",
+    "diagnose": {
+      "title": "Diagnostic {{br}}Pathology Engine",
+      "desc": "Upload raw imagery of symptomatic foliage. Our computer vision models align pathology with 50,000+ verifiable agricultural vectors.",
+      "status": "Engine Status:",
+      "ready": "Ready",
+      "action": "Scan Crop"
+    },
+    "advisory": {
+      "title": "Meteorological Advisory",
+      "alert": "Alert",
+      "desc": "<strong>18mm accumulation</strong> expected. Recommendation: Delay NPK fertilizer broadcasting by 48 hours to mitigate runoff risk."
+    },
+    "stats": {
+      "farmers": "Farmers Active",
+      "mandis": "Tracked Mandis"
+    },
+    "chat": {
+      "title": "AI Advisory Protocol",
+      "desc": "Direct access to RAG-augmented models cross-referencing ICAR frameworks with localized soil matrices.",
+      "action": "Initiate Dialog"
+    },
+    "schemes": {
+      "title": "State Frameworks",
+      "desc": "Identify accessible subsidies, insurance protocols (PMFBY), and capital allocation pathways.",
+      "action": "View Directory"
+    }
+  },
+  "mandi": {
+    "header": {
+      "title": "Real-time Commodities",
+      "subtitle": "Global Markets",
+      "live": "Live Feed",
+      "search_placeholder": "Query ticker or crop...",
+      "refine": "Refine"
+    },
+    "stats": {
+      "total_markets": "Total Markets",
+      "active_crop": "Active Crop",
+      "highest_volume": "Highest Volume",
+      "verified_data": "Verified Data",
+      "index_overview": "Index Overview",
+      "active_entities": "Active Entities",
+      "connected": "Connected"
+    },
+    "table": {
+      "commodity": "Asset / Commodity",
+      "exchange": "Exchange",
+      "quote": "Quote (INR/Qtl)",
+      "spread": "Spread (Min-Max)",
+      "price_gap": "Price Gap",
+      "spread_text": "{{spread}} INR spread"
+    }
+  },
+  "chat": {
+    "initial_msg": "System initialized. FarmSathi diagnostic and advisory protocol ready. Please provide field parameters or query constraints.",
+    "header": {
+      "title": "Diagnostic Terminal",
+      "status": "Online Status"
+    },
+    "labels": {
+      "you": "You",
+      "ai": "AI Protocol",
+      "prompts": "Prompts"
+    },
+    "placeholders": {
+      "query": "Query protocol..."
+    },
+    "actions": {
+      "send": "Send"
+    },
+    "suggestions": {
+      "yellowing": "Identify yellowing in basal wheat leaves",
+      "npk": "Calculate NPK ratio for alluvial soil",
+      "cultivars": "List Kharif drought-resistant cultivars"
+    },
+    "errors": {
+      "server": "⚠️ Error: {{error}}. Make sure the backend server is running on port 8000."
+    }
+  },
+  "diagnose": {
+    "header": {
+      "title": "Pathology Scanner",
+      "subtitle": "Upload foliage imagery. The vision engine aligns symptomatic markers against verified agricultural vectors via Groq AI + ICAR knowledge base."
+    },
+    "input": {
+      "title": "Image Source (JPG/PNG/WebP)",
+      "crop_hint": "Crop Hint (optional)",
+      "crop_placeholder": "e.g. wheat, rice, tomato...",
+      "select_asset": "Select visual asset",
+      "drop_files": "Drag & drop · Max 10MB",
+      "clear": "Clear",
+      "analyze": "Analyze Image",
+      "run_test": "Run Test Vectors"
+    },
+    "output": {
+      "title": "Analysis Matrix",
+      "live_engine": "Live Engine",
+      "awaiting": "Awaiting Input Vector",
+      "awaiting_desc": "Upload imagery or select a test vector to initiate pathology alignment.",
+      "failed": "Analysis Failed",
+      "processing": "Processing Visuals",
+      "processing_desc": "Groq vision model + ICAR RAG pipeline running...",
+      "identified": "Identified Pathogen",
+      "healthy": "Healthy Plant",
+      "confidence": "Confidence",
+      "crop": "Crop: {{crop}}",
+      "protocol": "Clinical Protocol Recommendations"
+    },
+    "errors": {
+      "upload_first": "Please upload an image first.",
+      "test_vector": "Test vector requires the backend to be running. Please upload your own image."
+    }
+  },
+  "schemes_page": {
+    "header": {
+      "title": "Capital Allocation & Frameworks",
+      "subtitle": "Scheme Directory",
+      "desc": "A comprehensive index of state and central subsidies, insurance protocols, and structural loans applicable to your holding. Search for custom queries."
+    },
+    "input": {
+      "placeholder": "Query specialized frameworks..."
+    },
+    "status": {
+      "querying": "Querying Pinecone Vector Store..."
+    },
+    "rag": {
+      "header": "AI Knowledge Base Response",
+      "result_for": "Result for \"{{query}}\"",
+      "verified": "Verified Frameworks:"
+    },
+    "filters": {
+      "All": "All",
+      "Subsidy": "Subsidy",
+      "Insurance": "Insurance",
+      "Loan": "Loan",
+      "State": "State",
+      "Central": "Central"
+    },
+    "card": {
+      "max_yield": "Max Yield",
+      "authority": "AUTHORITY: {{authority}}",
+      "deadline": "Application Deadline",
+      "action": "Open Action"
+    },
+    "errors": {
+      "api": "Failed to fetch scheme information from RAG backend."
+    }
+  }
+}

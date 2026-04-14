@@ -35,11 +35,11 @@ def chat_completion(messages: list, model: str = "llama-3.3-70b-versatile", max_
 def vision_completion(image_base64: str, prompt: str, media_type: str = "image/jpeg") -> str:
     """
     Send an image to Groq vision model and return the response text.
-    Uses llama-3.2-11b-vision-preview (Groq's vision model).
+    Uses meta-llama/llama-4-scout-17b-16e-instruct (Groq's active vision model).
     """
     client = get_groq_client()
     response = client.chat.completions.create(
-        model="llama-3.2-11b-vision-preview",
+        model="meta-llama/llama-4-scout-17b-16e-instruct",
         messages=[
             {
                 "role": "user",

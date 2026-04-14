@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { 
   ArrowRight, 
   MapPin, 
@@ -11,6 +12,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   return (
@@ -18,7 +20,9 @@ const Home = () => {
       {/* Deep Header Section */}
       <section className="flex flex-col gap-4">
         <div className="flex items-center gap-2">
-          <span className="bg-indigo-100 text-indigo-700 font-bold text-xs px-3 py-1 rounded-full border border-indigo-200 shadow-sm">Platform v2</span>
+          <span className="bg-indigo-100 text-indigo-700 font-bold text-xs px-3 py-1 rounded-full border border-indigo-200 shadow-sm">
+            {t('home.platform_version')}
+          </span>
           <span className="flex h-2 w-2 relative">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -26,12 +30,12 @@ const Home = () => {
         </div>
         
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
-          Agricultural intelligence, <br className="hidden md:block"/>
-          designed for output.
+          {t('home.headline').split('{{br}}')[0]} <br className="hidden md:block"/>
+          {t('home.headline').split('{{br}}')[1]}
         </h1>
         
         <p className="text-lg text-gray-600 leading-relaxed font-medium max-w-2xl mt-2">
-          Deploy deep-learning diagnostic models, consult with AI agronomists, and access state subsidies through a unified, high-contrast dashboard.
+          {t('home.subheadline')}
         </p>
       </section>
 
@@ -52,9 +56,12 @@ const Home = () => {
                 <div className="inline-flex items-center justify-center p-3 bg-indigo-800 rounded-xl mb-6 shadow-md border border-indigo-600">
                   <Search size={24} className="text-white" />
                 </div>
-                <h2 className="text-4xl font-extrabold tracking-tight mb-4 text-white">Diagnostic <br/>Pathology Engine</h2>
+                <h2 className="text-4xl font-extrabold tracking-tight mb-4 text-white">
+                  {t('home.diagnose.title').split('{{br}}')[0]} <br/>
+                  {t('home.diagnose.title').split('{{br}}')[1]}
+                </h2>
                 <p className="text-lg text-indigo-100 leading-relaxed max-w-md font-medium">
-                  Upload raw imagery of symptomatic foliage. Our computer vision models align pathology with 50,000+ verifiable agricultural vectors.
+                  {t('home.diagnose.desc')}
                 </p>
               </div>
               
@@ -67,13 +74,13 @@ const Home = () => {
             {/* Light action section */}
             <div className="bg-white p-6 md:px-10 md:py-8 border-t border-gray-200 rounded-b-xl flex flex-col md:flex-row justify-between md:items-center bg-gray-50/50 gap-4">
               <span className="font-semibold text-gray-700 text-sm flex items-center gap-2">
-                Engine Status: <span className="text-emerald-600 font-bold flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> Ready</span>
+                {t('home.diagnose.status')} <span className="text-emerald-600 font-bold flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> {t('home.diagnose.ready')}</span>
               </span>
               <button 
                 className="bg-white text-indigo-700 border border-gray-200 hover:bg-gray-100 px-6 py-3 rounded-lg font-bold tracking-wide shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 flex items-center justify-center gap-3"
                 onClick={() => navigate('/diagnose')}
               >
-                Scan Crop <ArrowRight size={18} />
+                {t('home.diagnose.action')} <ArrowRight size={18} />
               </button>
             </div>
           </motion.div>
@@ -84,12 +91,10 @@ const Home = () => {
             </div>
             <div>
               <h4 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-1.5 flex items-center gap-2">
-                Meteorological Advisory
-                <span className="bg-red-100 text-red-700 text-[10px] px-2 py-0.5 rounded uppercase font-bold border border-red-200">Alert</span>
+                {t('home.advisory.title')}
+                <span className="bg-red-100 text-red-700 text-[10px] px-2 py-0.5 rounded uppercase font-bold border border-red-200">{t('home.advisory.alert')}</span>
               </h4>
-              <p className="text-base text-gray-700 leading-relaxed font-medium">
-                <strong className="text-gray-900">18mm accumulation</strong> expected. Recommendation: Delay NPK fertilizer broadcasting by 48 hours to mitigate runoff risk.
-              </p>
+              <p className="text-base text-gray-700 leading-relaxed font-medium" dangerouslySetInnerHTML={{ __html: t('home.advisory.desc') }} />
             </div>
           </div>
         </div>
@@ -99,11 +104,11 @@ const Home = () => {
           <div className="grid grid-cols-2 gap-6">
             <div className="editorial-card p-8 flex flex-col justify-center items-center text-center shadow-sm">
               <div className="text-5xl font-extrabold tracking-tight text-gray-900 mb-2">50<span className="text-indigo-600">K</span></div>
-              <div className="text-sm font-bold text-gray-600 uppercase tracking-wide">Farmers Active</div>
+              <div className="text-sm font-bold text-gray-600 uppercase tracking-wide">{t('home.stats.farmers')}</div>
             </div>
             <div className="editorial-card p-8 flex flex-col justify-center items-center text-center shadow-sm">
               <div className="text-5xl font-extrabold tracking-tight text-gray-900 mb-2">124</div>
-              <div className="text-sm font-bold text-gray-600 uppercase tracking-wide">Tracked Mandis</div>
+              <div className="text-sm font-bold text-gray-600 uppercase tracking-wide">{t('home.stats.mandis')}</div>
             </div>
           </div>
 
@@ -114,12 +119,12 @@ const Home = () => {
             <div className="w-12 h-12 rounded-lg bg-indigo-100 flex items-center justify-center mb-6 shadow-inner border border-indigo-200">
               <MessageSquare size={24} className="text-indigo-600" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors">AI Advisory Protocol</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors">{t('home.chat.title')}</h3>
             <p className="text-base text-gray-600 mb-6 leading-relaxed font-medium">
-              Direct access to RAG-augmented models cross-referencing ICAR frameworks with localized soil matrices.
+              {t('home.chat.desc')}
             </p>
             <div className="flex items-center text-sm font-bold text-indigo-600 group-hover:gap-2 transition-all">
-              Initiate Dialog <ArrowRight size={16} className="ml-1" />
+              {t('home.chat.action')} <ArrowRight size={16} className="ml-1" />
             </div>
           </div>
 
@@ -130,12 +135,12 @@ const Home = () => {
             <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center mb-6 shadow-inner border border-gray-200">
               <FileText size={24} className="text-gray-700" />
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors">State Frameworks</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors">{t('home.schemes.title')}</h3>
             <p className="text-base text-gray-600 mb-6 leading-relaxed font-medium">
-              Identify accessible subsidies, insurance protocols (PMFBY), and capital allocation pathways.
+              {t('home.schemes.desc')}
             </p>
             <div className="flex items-center text-sm font-bold text-gray-900 group-hover:gap-2 transition-all">
-              View Directory <ArrowRight size={16} className="ml-1" />
+              {t('home.schemes.action')} <ArrowRight size={16} className="ml-1" />
             </div>
           </div>
         </div>
