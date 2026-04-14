@@ -27,7 +27,8 @@ const Sidebar = () => {
 
   useEffect(() => {
     // Default coordinates: Sonipat
-    fetch('/api/weather?lat=28.9948&lon=77.0151')
+    const API_BASE = (import.meta.env.VITE_API_URL || '') + '/api';
+    fetch(`${API_BASE}/weather?lat=28.9948&lon=77.0151`)
       .then(res => res.json())
       .then(data => {
         setWeather({
